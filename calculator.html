@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mishra ji: Calculator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+		form {
+			margin: 50px auto;
+			width: 400px;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		table {
+			margin: 50px auto;
+			border-collapse: collapse;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		th {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			font-weight: bold;
+			text-align: left;
+		}
+		td {
+			padding: 10px;
+			border-bottom: 1px solid #ddd;
+			text-align: left;
+		}
+		input[type="text"], select {
+			padding: 10px;
+			width: 100%;
+			border: none;
+			background-color: #f2f2f2;
+			margin-bottom: 20px;
+			border-radius: 5px;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<form>
+		<label for="first">Enter first element:</label>
+		<input type="text" id="first" name="first" required>
+
+		<label for="operator">Select the operator{*,/,+,-,%}:</label>
+		<select id="operator" name="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+			<option value="%">%</option>
+		</select>
+
+		<label for="second">Enter the second element:</label>
+		<input type="text" id="second" name="second" required>
+
+		<input type="submit" value="Calculate">
+	</form>
+
+	<table id="result" style="display:none;">
+	  <tr>
+	    <th>Operator</th>
+	    <th>First Element</th>
+	    <th>Second Element</th>
+	    <th>Result</th>
+	  </tr>
+	  <tr>
+	    <td id="operator"></td>
+	    <td id="first-element"></td>
+	    <td id="second-element"></td>
+	    <td id="result-value"></td>
+	  </tr>
+	</table>
+
+	<script>
+		const form = document.querySelector('form');
+		const resultTable = document.querySelector('#result');
+
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+			
+			const first = parseInt(document.querySelector('#first').value);
+			const operator = document.querySelector('#operator').value;
+			const second = parseInt(document.querySelector('#second').value);
+
+			let result;
+
+			if (operator === '+') {
+				result = first + second;
+			} else if (operator === '-') {
+				result = first - second;
+			} else if (operator === '*') {
+				result = first * second;
+			} else if (operator === '/') {
+				result = first / second;
+			} else if (operator === '%') {
+				result = first % second;
+			} else {
+				result = 'Error';
+			}
+
+			document.querySelector('#operator').textContent = operator;
+			document.querySelector('#first-element').textContent = first;
+			document.querySelector('#second-element').textContent = second;
+			document.querySelector('#result-value').textContent = result;
+
+			form.style.display = 'none';
+			resultTable.style.display = 'table';
+			
+		});
+	</script>
+</body>
+</html>
