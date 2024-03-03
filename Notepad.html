@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mishra Ji's Notepad</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    textarea {
+        width: 100%;
+        height: 300px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+    }
+    button:hover {
+        background-color: #2980b9;
+    }
+</style>
+</head>
+<body>
+
+    <h1 align="center">Hi 👋, I'm Aditya Mishra</h1>
+    
+<div class="container">
+    <h1><b>NOTEPAD</b></h1>
+    <textarea id="notepad"></textarea>
+    <button onclick="saveNotepad()">Save</button>
+    <button onclick="readNotepad()">Read</button>
+    <button onclick="editNotepad()">Edit</button>
+    <button onclick="viewNotepad()">View</button>
+</div>
+
+<script>
+    function saveNotepad() {
+        const content = document.getElementById('notepad').value;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'notepad.txt';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+
+    function readNotepad() {
+        alert(document.getElementById('notepad').value);
+    }
+
+    function editNotepad() {
+        const content = document.getElementById('notepad').value;
+        document.getElementById('notepad').value = content + "\n";
+    }
+
+    function viewNotepad() {
+        const content = document.getElementById('notepad').value;
+        alert(content);
+    }
+</script>
+</body>
+</html>
+
